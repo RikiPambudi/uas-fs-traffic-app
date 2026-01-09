@@ -1,0 +1,65 @@
+# CodeIgniter 4
+/writable/*
+!/writable/.gitkeep
+!/writable/cache/.gitkeep
+!/writable/logs/.gitkeep
+!/writable/uploads/.gitkeep
+!/writable/session/.gitkeep
+
+# Environment
+env
+.env.*.local
+
+# Composer
+/vendor/
+composer.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing
+/coverage/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*.orig
+*.old
+
+# Development
+.phpunit.result.cache

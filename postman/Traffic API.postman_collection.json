@@ -1,0 +1,125 @@
+{
+  "info": {
+    "name": "Traffic System API",
+    "_postman_id": "traffic-api-collection",
+    "description": "Postman collection for the Traffic Violation System API (CodeIgniter)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identity\": \"system.admin\",\n  \"password\": \"your_password\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/login", "host": ["{{base_url}}"], "path": ["api","login"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Violations",
+      "item": [
+        {
+          "name": "List Violations",
+          "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/violations","host":["{{base_url}}"],"path":["api","violations"]}}
+        },
+        {
+          "name": "Create Violation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"contraflow\",\n  \"location_address\": \"Jl. Sudirman No.1\",\n  \"violation_datetime\": \"2026-01-03 10:00:00\",\n  \"description\": \"Sample contraflow\",\n  \"vehicle_plate\": \"B 1234 ABC\",\n  \"vehicle_type\": \"mobil\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/violations", "host": ["{{base_url}}"], "path": ["api","violations"] }
+          }
+        },
+        {
+          "name": "Get Violation",
+          "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/violations/:id","host":["{{base_url}}"],"path":["api","violations",":id"]}}
+        },
+        {
+          "name": "Update Violation",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"location_address\": \"Jl. Updated Address\",\n  \"violation_datetime\": \"2026-01-03 11:00:00\"\n}" },
+            "url": { "raw": "{{base_url}}/api/violations/:id", "host": ["{{base_url}}"], "path": ["api","violations",":id"] }
+          }
+        },
+        {
+          "name": "Delete Violation",
+          "request": {"method":"DELETE","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/violations/:id","host":["{{base_url}}"],"path":["api","violations",":id"]}}
+        }
+      ]
+    },
+    {
+      "name": "Observations",
+      "item": [
+        {"name":"List Observations","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/observations","host":["{{base_url}}"],"path":["api","observations"]}}},
+        {"name":"Create Observation","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],"body":{"mode":"raw","raw":"{\n  \"vehicle_type\": \"truk\",\n  \"license_plate\": \"T 9999 XYZ\",\n  \"observation_datetime\": \"2026-01-03 09:30:00\",\n  \"location_address\": \"Jl. Asia Afrika\",\n  \"speed_kmh\": 60.5\n}"},"url":{"raw":"{{base_url}}/api/observations","host":["{{base_url}}"],"path":["api","observations"]}}},
+        {"name":"Get Observation","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/observations/:id","host":["{{base_url}}"],"path":["api","observations",":id"]}}},
+        {"name":"Update Observation","request":{"method":"PUT","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],"body":{"mode":"raw","raw":"{\n  \"license_plate\": \"T 1111 ABC\",\n  \"observation_datetime\": \"2026-01-03 10:00:00\",\n  \"location_address\": \"Jl. Updated\"\n}"},"url":{"raw":"{{base_url}}/api/observations/:id","host":["{{base_url}}"],"path":["api","observations",":id"]}}},
+        {"name":"Delete Observation","request":{"method":"DELETE","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/observations/:id","host":["{{base_url}}"],"path":["api","observations",":id"]}}}
+      ]
+    },
+    {
+      "name": "Master Data",
+      "item": [
+        {"name":"Violation Types","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/master/violation-types","host":["{{base_url}}"],"path":["api","master","violation-types"]}}},
+        {"name":"Vehicle Types","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/master/vehicle-types","host":["{{base_url}}"],"path":["api","master","vehicle-types"]}}}
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {"name":"List Users","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/master/users","host":["{{base_url}}"],"path":["api","master","users"]}}},
+        {"name":"Create User","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],"body":{"mode":"raw","raw":"{\n  \"username\": \"new.user\",\n  \"email\": \"new.user@example.com\",\n  \"password\": \"secret123\",\n  \"role\": \"operator\"\n}"},"url":{"raw":"{{base_url}}/api/master/users","host":["{{base_url}}"],"path":["api","master","users"]}}},
+        {"name":"Get User","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/master/users/:id","host":["{{base_url}}"],"path":["api","master","users",":id"]}}},
+        {"name":"Update User","request":{"method":"PUT","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],"body":{"mode":"raw","raw":"{\n  \"email\": \"updated.user@example.com\"\n}"},"url":{"raw":"{{base_url}}/api/master/users/:id","host":["{{base_url}}"],"path":["api","master","users",":id"]}}},
+        {"name":"Delete User","request":{"method":"DELETE","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/master/users/:id","host":["{{base_url}}"],"path":["api","master","users",":id"]}}}
+      ]
+    },
+    {
+      "name": "Configs",
+      "item": [
+        {"name":"List Configs","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/master/configs","host":["{{base_url}}"],"path":["api","master","configs"]}}}
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {"name":"Violations By Type","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/reports/violations-by-type","host":["{{base_url}}"],"path":["api","reports","violations-by-type"]}}},
+        {"name":"Observations By Vehicle","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/reports/observations-by-vehicle","host":["{{base_url}}"],"path":["api","reports","observations-by-vehicle"]}}},
+        {"name":"Daily Violations","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/reports/daily-violations?days=7","host":["{{base_url}}"],"path":["api","reports","daily-violations"],"query":[{"key":"days","value":"7"}]}}}
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {"name":"Summary","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/dashboard/summary","host":["{{base_url}}"],"path":["api","dashboard","summary"]}}}
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {"key":"base_url","value":"http://localhost"},
+    {"key":"token","value":""}
+  ]
+}
